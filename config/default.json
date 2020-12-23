@@ -1,0 +1,13 @@
+{
+    "Server": {
+        "port": 10001,
+        "secret": "secret-key"
+    },
+    "Database": {
+        "username": "test",
+        "password": "test",
+        "database": "s5db",
+        "host": "127.0.0.1",
+        "dialect": "mysql"
+    }
+}
