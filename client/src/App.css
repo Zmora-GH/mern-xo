@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.slot{
+    position: absolute;
+    padding: 0px 20px;
+    font-size: 64px;
+    font-weight: bold;
+    color: white;
+}
+.game-field {
+    width: 400px;
+    height: 400px;
+}
+.main-logo {
+    font-size: 36px;
+    border: 2px solid white;
+    border-radius: 66px;
+    line-height: 30px;
+}
+.hvh {
+    height: 100vh;
+}
+.mgp {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 62%, rgba(40,68,0,0.22591043253238796) 98%);
+}
+.mgp:hover {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 62%, rgba(81,135,4,0.33235300956320024) 88%);
+}
