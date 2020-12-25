@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from "react-router-dom";
 import {Col, Row, Container} from 'react-bootstrap';
 
 import MainMenu from './MainMenu'
@@ -6,6 +7,9 @@ import MainOnline from './MainOnline'
 import MainTags from './MainTags'
 
 export default function MainPage() {
+    let {tagId} = useParams()
+    const TagID = tagId || 0;
+    console.log('><><><><', TagID);
     return (
         <Container className="mt-2">
             <Row>
@@ -17,7 +21,7 @@ export default function MainPage() {
                     </Row>
                     <Row>
                         <Col md={12}>
-                            <MainOnline />
+                            <MainOnline  data={TagID}/>
                         </Col>
                     </Row>
                 </Col>

@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import { useParams } from "react-router-dom";
 import {Table, Modal} from 'react-bootstrap';
 
 export default function GamePage() {
+    const {gameId} = useParams();
     const myFigure = 'x' || 'o';
     const winCells = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+    // eslint-disable-next-line
     let winner = false; // STATE
 
     const [show, setShow] = useState(false);
@@ -37,7 +40,7 @@ export default function GamePage() {
     })
     return (
         <div className="text-center my-2">
-            <h2 className="text-center my-1"> Game name belief, Lorem Ipsum is not simply random text </h2>
+            <h2 className="text-center my-1"> Game name belief, Lorem Ipsum is not simply random text  ID:{gameId}</h2>
             <div className="d-inline"> tag1 tag2 tag3</div>
             <h3 className="text-center my-1 font-weight-bold"> [X] USER000 vs USER001 [O] </h3>
             <Table  bordered className="game-field mx-auto my-4 bg-dark">

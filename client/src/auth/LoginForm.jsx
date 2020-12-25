@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Form} from 'react-bootstrap';
+import axios from 'axios';
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({username: "", password: ""})
@@ -7,9 +8,22 @@ export default function LoginForm() {
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(formData)
+        await axios.post('/api/auth/signin', {...formData})
+        .then(res => {
+            localStorage.setItem('userData' , JSON.stringify({...res.data}));
+            window.location.reload();
+        })
+        .catch(err => {
+            if (err.response.status === 400) {
+                document.getElementById('form-message').textContent = err.response.data.message
+                setTimeout(()=>{document.getElementById('form-message').textContent = ""}, 2000)
+            } else {
+                document.getElementById('form-message').textContent = err.response.data.message
+                setTimeout(()=>{document.getElementById('form-message').textContent = ""}, 2000)
+            }
+        })
     }
     return (
         <Form className="" onSubmit={handleSubmit}>
@@ -24,6 +38,7 @@ export default function LoginForm() {
             <Button variant="success" type="submit">
                 Submit
             </Button>
+            <p className="text-danger" id="form-message"></p>
         </Form>
     )
 }
