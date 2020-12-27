@@ -2,8 +2,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-do
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import { AuthContext} from './common/context/AuthContext';
-
 import Main from './main/Main';
 import Game from './game/Game';
 import AuthPage from './auth/AuthPage';

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
 
 export default function Header() {

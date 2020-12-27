@@ -7,11 +7,9 @@ module.exports = function(sequelize, Sequelize) {
         },
         name: {
             type: Sequelize.TEXT
-        },
-        count: {
-            type: Sequelize.INTEGER,
-            defaultValue: 0
         }
+    }, {
+        timestamps: false,
     });
     return Tag;
 }

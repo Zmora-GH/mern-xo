@@ -8,6 +8,8 @@ module.exports = function(sequelize, Sequelize) {
         name: {
             type: Sequelize.TEXT
         },
+    }, {
+        timestamps: false,
     });
     return Game;
 }

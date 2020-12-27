@@ -6,8 +6,8 @@ export default function GamePage() {
     const {gameId} = useParams();
     const myFigure = 'x' || 'o';
     const winCells = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+    const [winner, setWinner]= useState(false)
     // eslint-disable-next-line
-    let winner = false; // STATE
 
     const [show, setShow] = useState(false);
     const [field, setField] = useState([0,0,0,0,0,0,0,0,0]);
@@ -34,10 +34,10 @@ export default function GamePage() {
             let slot = document.getElementById('td' + i);
             if (field[i] === 'x'){slot.classList.add('bg-warning')}
             else if (field[i] === 'o') {slot.classList.add('bg-danger')}
-            winner = checkWin();
+            setWinner(checkWin());
             if (winner){handleShow()}
         }
-    })
+    }, [winner, field])
     return (
         <div className="text-center my-2">
             <h2 className="text-center my-1"> Game name belief, Lorem Ipsum is not simply random text  ID:{gameId}</h2>

@@ -5,18 +5,29 @@ import axios from 'axios';
 import "@yaireo/tagify/dist/tagify.css"
 
 export default function CreateForm() {
-    const [formData, setFormData] = useState({name: "", tags: []})
+    const [inputName, setInputName] = useState("")
+    const [inputTags, setInputTags] = useState([])
     const [whiteList, setWhiteList] = useState()
 
     useEffect(() => {
         if (!whiteList){
-            // TODO: GET TAGS ARRAY
-            setWhiteList(["aaa","aaa1","aaa3","aaa7","fff","fff1","fff3","fff4"])
+            axios.get('/api/main/tags')
+            .then((res)=>{
+                let temp = []
+                res.data.forEach( (tag) => { temp.push(tag.name) })
+                setWhiteList(temp)
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
         }
     })
 
     const handleChangeInput = (event) => {
-        setFormData({...formData, [event.target.name]: event.target.value});
+        event.preventDefault();
+        setInputName(event.target.value);
+
+
     }
     const handleChangeTags = (event) => {
         event.persist();
@@ -25,27 +36,29 @@ export default function CreateForm() {
         for (let i in data) {
             tags.push(data[i].value);
         }
-        setFormData({...formData,tags});
-        console.log(whiteList);
-    }
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+        setInputTags(tags);
 
-        await axios.post('/', {})
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post('/api/main/newgame', {"name": inputName, "tags": inputTags})
         .then(res => {
-            // TODO: redirect to /game/id (create game)
+            console.log(res);
+
         })
         .catch(err => {
-            // TODO: //error handle
+            console.log(err);
+
         })
+
     }
     return (
         <Form className="" onSubmit={handleSubmit}>
-            <Form.Group controlId="formGroupUsername">
+            <Form.Group controlId="formGroupName">
                 <Form.Label>Name</Form.Label>
                 <Form.Control name="name" type="text" placeholder="Name" onChange={handleChangeInput}/>
             </Form.Group>
-            <Form.Group className="my-2">
+            <Form.Group className="my-2" controlId="formGroupTags">
                 <Tags
                   value=''
                   whitelist={whiteList}

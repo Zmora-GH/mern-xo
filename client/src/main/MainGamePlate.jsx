@@ -12,10 +12,9 @@ export default function MainGamePlate(data) {
         <Card.Title classname="text-muted">{data.data.creator}</Card.Title>
         <Col>
             {data.data.tags.map((tag => {
-                return <Badge pill variant="dark" className="mx-1">{tag}</Badge>
+                return <Badge pill variant="dark" className="mx-1" key={tag}>{tag}</Badge>
             }))}
         </Col>
-
     </Card>
     )
 }
