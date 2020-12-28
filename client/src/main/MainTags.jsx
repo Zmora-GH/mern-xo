@@ -23,7 +23,7 @@ export default function MainTags() {
                 <Card.Body className="">
                     {tags.map(tag => <a
                         key={tag.id}
-                        href={tag.id}
+                        href={"/main/" + tag.id}
                         className="
                             tesx-center
                             d-inline-block

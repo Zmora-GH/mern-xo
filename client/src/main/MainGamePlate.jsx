@@ -9,7 +9,7 @@ export default function MainGamePlate(data) {
     return (
     <Card className="text-center border-success m-2 mgp p-2" onClick={joinToGame} role="button">
         <Card.Title>{data.data.name}</Card.Title>
-        <Card.Title classname="text-muted">{data.data.creator}</Card.Title>
+        <Card.Title className="text-muted">{data.data.creator}</Card.Title>
         <Col>
             {data.data.tags.map((tag => {
                 return <Badge pill variant="dark" className="mx-1" key={tag}>{tag}</Badge>

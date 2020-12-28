@@ -41,7 +41,7 @@ export default function CreateForm() {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('/api/main/newgame', {"name": inputName, "tags": inputTags})
+        axios.post('/api/main/create', {"name": inputName, "tags": inputTags})
         .then(res => {
             console.log(res);
 
@@ -59,6 +59,7 @@ export default function CreateForm() {
                 <Form.Control name="name" type="text" placeholder="Name" onChange={handleChangeInput}/>
             </Form.Group>
             <Form.Group className="my-2" controlId="formGroupTags">
+                <Form.Label>Tags</Form.Label>
                 <Tags
                   value=''
                   whitelist={whiteList}

@@ -16,10 +16,19 @@ router.get('/tags', async (req, res) => {
 
 router.post('/create', async (req, res) => {
     try {
-        const {name, tags} = req.body
-        // - - - >
-        res.json({name, tags})
+        let {name, tags} = req.body;
+        let game = await Game.build({name});
+        console.log(JSON.stringify(game, null, 4));
+        // for (var i in tags) {
+        //     console.log('[ ] ', tags[i]);
+        //     let temp_tag = await Tag.findOrCreate( { where: {name: tags[i]}});
+        //     temp_tag.addGame(game);
+        //     game.addTag(temp_tag);
+        // }
+        await game.save()
+        res.status(201).json({gameId: game.id})
     } catch (err) {
+        console.log(err);
         res.status(500)
     }
 });
